@@ -212,6 +212,9 @@ bool MinecraftAccount::shouldRefresh() const
      * Don't refresh broken accounts.
      * Refresh accounts that would expire in the next 12 hours (fresh token validity is 24 hours).
      */
+    if (data.type == AccountType::Offline) {
+    return false;  // nothing to refresh for offline accounts
+    }
     if (isInUse()) {
         return false;
     }
